@@ -1,0 +1,31 @@
+---
+import { siteConfig, templateConfig } from "../config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mx-auto max-w-content px-6 pb-12 pt-16 font-label text-xs text-muted md:px-0">
+  <div class="flex flex-col gap-6 border-t border-line pt-8 md:flex-row md:items-start md:justify-between">
+    <div class="space-y-2">
+      <p>{siteConfig.name} © {year}</p>
+      <div class="flex flex-wrap gap-x-4 gap-y-2">
+        {
+          siteConfig.socialLinks.map((link) => (
+            <a class="underline-offset-4 hover:underline" href={link.href}>
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      class="inline-flex w-fit items-center gap-2 rounded-template border border-line bg-neutral px-3 py-2 text-primary transition hover:border-primary"
+      href={templateConfig.repoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>{templateConfig.badgeLabel}</span>
+      <span aria-hidden="true">Star on GitHub</span>
+    </a>
+  </div>
+</footer>

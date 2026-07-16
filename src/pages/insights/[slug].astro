@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getReadingTime } from "../../lib/readingTime";
+import { withBase } from "../../lib/paths";
+import { getPostBody, getPostSlug } from "../../lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: getPostSlug(post) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const readingTime = getReadingTime(getPostBody(post));
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage}
+>
+  <article>
+    <a
+      class="mb-8 inline-block font-label text-xs text-primary underline-offset-4 hover:underline"
+      href={withBase("/insights/")}
+    >
+      ← Insights
+    </a>
+    <p class="mb-2 font-label text-xs text-subtle">
+      {formatDate(post.data.publishDate)} · {readingTime}
+    </p>
+    <h1 class="max-w-prose font-headline text-xl font-normal text-primary md:text-2xl">
+      {post.data.title}
+    </h1>
+    <p class="mt-5 max-w-prose font-headline text-base text-muted">
+      {post.data.description}
+    </p>
+    {
+      post.data.heroImage && (
+        <img
+          class="mt-10 aspect-[16/9] w-full max-w-prose rounded-template object-cover"
+          src={post.data.heroImage}
+          alt=""
+        />
+      )
+    }
+    <div class="prose-template mt-10">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

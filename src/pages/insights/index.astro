@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getReadingTime } from "../../lib/readingTime";
+import { withBase } from "../../lib/paths";
+import { getPostBody, getPostSlug } from "../../lib/blog";
+
+const pageSize = 6;
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime(),
+);
+const pagePosts = posts.slice(0, pageSize);
+const totalPages = Math.ceil(posts.length / pageSize);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+---
+
+<BaseLayout
+  title="Insights"
+  description="Writing on engineering, frontend craft, and building in public."
+>
+  <section class="pb-10">
+    <h1 class="font-headline text-xl font-normal text-primary">Insights</h1>
+    <p class="mt-3 max-w-prose font-headline text-base text-secondary">
+      Writing on engineering, frontend craft, and building in public.
+    </p>
+  </section>
+
+  <section class="space-y-12 py-6">
+    {
+      pagePosts.map((post) => (
+        <article>
+          <p class="mb-2 font-label text-xs text-subtle">
+            {formatDate(post.data.publishDate)} · {getReadingTime(getPostBody(post))}
+          </p>
+          <h2 class="font-headline text-lg font-normal text-primary">
+            <a
+              class="underline underline-offset-4"
+              href={withBase(`/insights/${getPostSlug(post)}/`)}
+            >
+              {post.data.title}
+            </a>
+          </h2>
+          <p class="mt-3 max-w-prose font-headline text-base text-secondary">
+            {post.data.description}
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 font-label text-xs text-muted">
+            {post.data.tags.map((tag) => <span>{tag}</span>)}
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  {
+    totalPages > 1 && (
+      <nav class="mt-12 flex gap-4 font-label text-xs text-primary">
+        <span>Page 1 of {totalPages}</span>
+        <a class="underline underline-offset-4" href={withBase("/insights/page/2/")}>
+          Next
+        </a>
+      </nav>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import { seoConfig, siteConfig } from "../config";
+import { withBase } from "../lib/paths";
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+};
+
+const {
+  title = seoConfig.title,
+  description = seoConfig.description,
+  image = seoConfig.ogImage,
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const pageTitle = title === seoConfig.title ? title : `${title} - ${siteConfig.name}`;
+const imageUrl = new URL(image, Astro.site ?? Astro.url).href;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+{
+  seoConfig.twitterHandle && (
+    <meta name="twitter:creator" content={seoConfig.twitterHandle} />
+  )
+}
+<link rel="alternate" type="application/rss+xml" title="Insights RSS" href={withBase("/rss.xml")} />
+<link rel="icon" type="image/svg+xml" href={withBase("/favicon/favicon.svg")} />

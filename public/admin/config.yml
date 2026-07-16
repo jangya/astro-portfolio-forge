@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: your-github-username/astro-portfolio-forge
+  branch: main
+  base_url: https://your-auth-provider.example.com
+
+local_backend: true
+
+site_url: https://your-github-username.github.io
+display_url: https://your-github-username.github.io
+logo_url: /favicon/favicon.svg
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: Insights
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Publish Date, name: publishDate, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Tags, name: tags, widget: list, field: { label: Tag, name: tag, widget: string }, default: [] }
+      - { label: Hero Image, name: heroImage, widget: image, required: false }
+      - { label: Body, name: body, widget: markdown }

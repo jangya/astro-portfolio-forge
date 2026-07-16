@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getFeaturedRepos } from "../lib/github";
+
+const repos = await getFeaturedRepos();
+---
+
+<BaseLayout
+  title="Projects"
+  description="Featured GitHub projects fetched at build time."
+>
+  <section class="pb-10">
+    <h1 class="font-headline text-xl font-normal text-primary">Projects</h1>
+    <p class="mt-3 max-w-prose font-headline text-base text-secondary">
+      Featured repositories fetched from GitHub at build time.
+    </p>
+  </section>
+
+  <section class="space-y-12 py-6">
+    {
+      repos.map((repo) => (
+        <article>
+          <h2 class="font-headline text-lg font-normal text-primary">
+            <a class="underline underline-offset-4" href={repo.html_url}>
+              {repo.name}
+            </a>
+          </h2>
+          <p class="mt-3 max-w-prose font-headline text-base text-secondary">
+            {repo.description ?? "No description provided."}
+          </p>
+          <div class="mt-4 flex flex-wrap items-center gap-3 font-label text-xs text-muted">
+            <span>{repo.stargazers_count} stars</span>
+            {repo.topics?.slice(0, 4).map((topic) => <span>{topic}</span>)}
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>

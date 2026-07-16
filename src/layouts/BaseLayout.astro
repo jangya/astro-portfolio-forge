@@ -1,0 +1,45 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { themeConfig } from "../config";
+import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+};
+
+const { title, description, image } = Astro.props;
+const themeStyle = `
+  --color-primary: ${themeConfig.colors.primary};
+  --color-secondary: ${themeConfig.colors.secondary};
+  --color-tertiary: ${themeConfig.colors.tertiary};
+  --color-neutral: ${themeConfig.colors.neutral};
+  --color-surface: ${themeConfig.colors.surface};
+  --color-muted: ${themeConfig.colors.muted};
+  --color-subtle: ${themeConfig.colors.subtle};
+  --color-line: ${themeConfig.colors.line};
+  --color-accent: ${themeConfig.colors.accent};
+  --font-headline: ${themeConfig.fonts.headline};
+  --font-body: ${themeConfig.fonts.body};
+  --font-label: ${themeConfig.fonts.label};
+`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+  <body class="bg-neutral text-secondary antialiased" style={themeStyle}>
+    <div class="mx-auto min-h-screen max-w-shell bg-surface">
+      <Header />
+      <main class="mx-auto max-w-content px-6 pb-4 md:px-0">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

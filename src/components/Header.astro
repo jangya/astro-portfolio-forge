@@ -1,0 +1,45 @@
+---
+import { siteConfig } from "../config";
+import { withBase } from "../lib/paths";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  if (href === "/") return currentPath === "/" || currentPath.endsWith("/template-portfolio/");
+  return currentPath.includes(href);
+};
+---
+
+<header class="mx-auto max-w-content px-6 py-10 md:px-0 md:py-12">
+  <nav class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+    <a class="grid grid-cols-[64px_minmax(0,1fr)] items-center gap-4" href={withBase("/")}>
+      <img
+        class="h-16 w-16 rounded-full object-cover grayscale"
+        src={siteConfig.avatar}
+        alt=""
+      />
+      <span class="min-w-0">
+        <span class="block font-label text-lg font-semibold leading-tight text-primary">
+          {siteConfig.name}
+        </span>
+        <span class="mt-1 block font-label text-xs leading-relaxed text-muted">
+          {siteConfig.tagline}
+        </span>
+      </span>
+    </a>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 font-headline text-sm text-accent md:justify-end">
+      {
+        siteConfig.nav.map((item) => (
+          <a
+            class:list={[
+              "underline-offset-4 hover:underline",
+              isActive(item.href) ? "text-primary" : "text-accent",
+            ]}
+            href={withBase(item.href)}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
