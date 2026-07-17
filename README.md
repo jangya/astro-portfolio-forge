@@ -110,6 +110,8 @@ site: "https://username.github.io",
 base: "/template-portfolio",
 ```
 
+This repository uses environment variables in `astro.config.mjs`, so the workflow can deploy this template demo at `/astro-portfolio-forge/` while consumers can still use `/` for a user site.
+
 ## Analytics
 
 Analytics are intentionally not included. Add your preferred static analytics or data workflow in `src/data/analytics.json` when you need it.

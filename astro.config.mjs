@@ -3,8 +3,8 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://your-github-username.github.io",
-  base: "/",
+  site: process.env.ASTRO_SITE ?? "https://your-github-username.github.io",
+  base: process.env.ASTRO_BASE ?? "/",
   output: "static",
   integrations: [sitemap()],
   vite: {

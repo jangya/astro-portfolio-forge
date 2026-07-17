@@ -10,6 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  ASTRO_SITE: https://jangya.github.io
+  ASTRO_BASE: /astro-portfolio-forge
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -29,6 +33,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Build
         run: npm run build
