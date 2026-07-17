@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "cms": "decap-server",
+    "cms": "BIND_HOST=127.0.0.1 decap-server",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",

@@ -51,15 +51,26 @@ Reading time is calculated at build time.
 
 GitHub Pages is static, so Decap CMS needs an external OAuth authenticator for GitHub commits.
 
+The checked-in `public/admin/config.yml` is local-first and uses Decap's local proxy backend:
+
+```yaml
+backend:
+  name: proxy
+  proxy_url: http://127.0.0.1:8081/api/v1
+  branch: main
+```
+
+That avoids requiring GitHub OAuth while developing locally.
+
 1. Create a GitHub OAuth App.
 2. Set the Homepage URL to your published site, for example `https://your-github-username.github.io`.
 3. Set the Authorization callback URL to your authenticator callback URL.
 4. Deploy or configure a GitHub OAuth proxy such as `decap-cms-oauth-provider-node`, Cloudflare Workers, Vercel, Netlify, or another trusted provider.
-5. Set `backend.repo`, `backend.branch`, and `backend.base_url` in `public/admin/config.yml`.
+5. Replace the local `proxy` backend in `public/admin/config.yml` with the GitHub backend block shown in that file.
 
 The CMS collection fields match the Astro schema exactly: `title`, `description`, `publishDate`, `tags`, `heroImage`, and `body`.
 
-If production login redirects to `https://your-auth-provider.example.com/...`, the OAuth proxy has not been configured yet. That placeholder is intentional for template users; replace it with your deployed authenticator before using the CMS from GitHub Pages.
+If production login redirects to a placeholder OAuth URL, or the production admin page shows the CMS setup screen, the OAuth proxy has not been configured yet. That is intentional for template users; replace the local proxy backend with your deployed authenticator before using the CMS from GitHub Pages.
 
 ### Local CMS Editing
 
@@ -76,7 +87,7 @@ Then open:
 http://localhost:4321/admin/
 ```
 
-The `local_backend: true` setting in `public/admin/config.yml` lets Decap use the local proxy during development. Production still uses the GitHub backend.
+The `npm run cms` command starts Decap's local proxy at `http://127.0.0.1:8081/api/v1`.
 
 ## GitHub Projects
 

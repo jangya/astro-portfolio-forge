@@ -46,8 +46,9 @@ npm run cms</pre>
           const usesPlaceholderAuth = config.includes(
             "https://your-auth-provider.example.com",
           );
+          const usesLocalProxy = config.includes("name: proxy");
 
-          if (!isLocal && usesPlaceholderAuth) {
+          if (!isLocal && (usesPlaceholderAuth || usesLocalProxy)) {
             document.getElementById("cms-setup")?.removeAttribute("hidden");
             return;
           }
