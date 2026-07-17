@@ -4,37 +4,34 @@ import { siteConfig } from "../config";
 ---
 
 <BaseLayout title="Home" description={siteConfig.tagline}>
-  <section class="pb-14">
-    <p class="mb-3 font-label text-xs uppercase tracking-normal text-muted">
-      {siteConfig.location}
-    </p>
-    <h1 class="max-w-prose font-headline text-2xl font-normal text-primary md:text-3xl">
-      {siteConfig.name}
+  <section class="pb-16">
+    <h1 class="max-w-prose font-headline text-base font-normal text-secondary">
+      {siteConfig.introGreeting}
     </h1>
-    <div class="prose-template mt-6">
+    <div class="prose-template mt-5">
       {siteConfig.bio.map((paragraph) => <p>{paragraph}</p>)}
     </div>
   </section>
 
   <section class="py-10">
-    <h2 class="mb-8 font-headline text-xl font-normal text-primary">Experience</h2>
+    <h2 class="mb-8 font-headline text-lg font-normal text-primary">Experience</h2>
     <div class="space-y-10">
       {
         siteConfig.experience.map((item) => (
           <article>
             <div class="flex flex-col gap-1">
               <p class="order-1 font-label text-xs text-subtle">{item.period}</p>
-              <h3 class="order-2 font-headline text-base font-normal text-primary">
+              <h3 class="order-2 font-headline text-[1.08rem] font-normal text-primary">
                 {item.role}
               </h3>
             </div>
             <p class="mt-1 font-label text-xs text-muted">
               {item.company} · {item.location}
             </p>
-            <p class="mt-3 max-w-prose font-body text-sm text-secondary">
+            <p class="mt-3 max-w-prose font-body text-[1rem] leading-[1.6] text-secondary">
               {item.highlight}
             </p>
-            <ul class="mt-4 max-w-prose list-disc space-y-2 pl-5 font-body text-sm text-muted">
+            <ul class="mt-4 max-w-prose list-disc space-y-2 pl-5 font-body text-[1rem] leading-[1.6] text-muted">
               {item.bullets.map((bullet) => <li>{bullet}</li>)}
             </ul>
           </article>
@@ -44,18 +41,18 @@ import { siteConfig } from "../config";
   </section>
 
   <section class="py-10">
-    <h2 class="mb-8 font-headline text-xl font-normal text-primary">Education</h2>
+    <h2 class="mb-8 font-headline text-lg font-normal text-primary">Education</h2>
     <div class="space-y-8">
       {
         siteConfig.education.map((item) => (
           <article>
             <p class="font-label text-xs text-subtle">{item.period}</p>
-            <h3 class="mt-1 font-headline text-base font-normal text-primary">
+            <h3 class="mt-1 font-headline text-[1.08rem] font-normal text-primary">
               {item.degree}
             </h3>
             <p class="mt-1 font-label text-xs text-muted">{item.institution}</p>
             {item.note && (
-              <p class="mt-3 max-w-prose font-body text-sm text-secondary">
+              <p class="mt-3 max-w-prose font-body text-[1rem] leading-[1.6] text-secondary">
                 {item.note}
               </p>
             )}

@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Your Name",
   tagline: "Frontend Engineer building precise, accessible product interfaces.",
+  introGreeting: "Hello! I am Your Name.",
   bio: [
     "I build front-end systems that are fast, accessible, and honest about what they are doing.",
     "This template is designed for engineers, designers, writers, and builders who want a quiet portfolio that is easy to fork, configure, and publish.",
@@ -79,11 +80,11 @@ export const themeConfig = {
     muted: "#777777",
     subtle: "#BBBBBB",
     line: "#E5E5E5",
-    accent: "#B3382C",
+    accent: "#C0392B",
   },
   fonts: {
-    headline: '"Newsreader", Georgia, "Times New Roman", serif',
-    body: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    headline: 'Georgia, "Times New Roman", serif',
+    body: 'Georgia, "Times New Roman", serif',
     label: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   },
 };
