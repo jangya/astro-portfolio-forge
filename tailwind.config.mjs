@@ -21,17 +21,17 @@ export default {
       },
       fontSize: {
         xs: ["0.8rem", { lineHeight: "1.5" }],
-        sm: ["0.95rem", { lineHeight: "1.5" }],
-        base: ["1.18rem", { lineHeight: "1.65" }],
-        lg: ["1.475rem", { lineHeight: "1.35" }],
-        xl: ["1.844rem", { lineHeight: "1.2" }],
-        "2xl": ["2.305rem", { lineHeight: "1.15" }],
-        "3xl": ["2.881rem", { lineHeight: "1.1" }],
+        sm: ["1rem", { lineHeight: "1.6" }],
+        base: ["1.25rem", { lineHeight: "1.65" }],
+        lg: ["1.563rem", { lineHeight: "1.35" }],
+        xl: ["1.953rem", { lineHeight: "1.25" }],
+        "2xl": ["2.441rem", { lineHeight: "1.18" }],
+        "3xl": ["3.052rem", { lineHeight: "1.12" }]
       },
       maxWidth: {
         shell: "1100px",
         content: "860px",
-        prose: "610px",
+        prose: "640px",
       },
       spacing: {
         18: "4.5rem",
