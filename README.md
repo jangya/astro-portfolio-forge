@@ -59,13 +59,15 @@ GitHub Pages is static, so Decap CMS needs an external OAuth authenticator for G
 
 The CMS collection fields match the Astro schema exactly: `title`, `description`, `publishDate`, `tags`, `heroImage`, and `body`.
 
+If production login redirects to `https://your-auth-provider.example.com/...`, the OAuth proxy has not been configured yet. That placeholder is intentional for template users; replace it with your deployed authenticator before using the CMS from GitHub Pages.
+
 ### Local CMS Editing
 
 For local editing, run Astro and the Decap local backend in two terminals:
 
 ```bash
 npm run dev
-npx decap-server
+npm run cms
 ```
 
 Then open:

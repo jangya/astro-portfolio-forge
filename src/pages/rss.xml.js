@@ -1,6 +1,7 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { seoConfig, siteConfig } from "../config";
+import { withBase } from "../lib/paths";
 
 export async function GET(context) {
   const posts = (await getCollection("blog")).sort(
@@ -15,7 +16,7 @@ export async function GET(context) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.publishDate,
-      link: `/insights/${post.slug}/`,
+      link: withBase(`/insights/${post.id.replace(/\.md$/, "")}/`),
     })),
   });
 }

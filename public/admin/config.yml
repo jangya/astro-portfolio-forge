@@ -1,14 +1,16 @@
 backend:
   name: github
-  repo: your-github-username/astro-portfolio-forge
+  repo: jangya/astro-portfolio-forge
   branch: main
+  # Replace this with your deployed Decap/GitHub OAuth proxy before using
+  # production CMS login on GitHub Pages.
   base_url: https://your-auth-provider.example.com
 
 local_backend: true
 
-site_url: https://your-github-username.github.io
-display_url: https://your-github-username.github.io
-logo_url: /favicon/favicon.svg
+site_url: https://jangya.github.io/astro-portfolio-forge
+display_url: https://jangya.github.io/astro-portfolio-forge
+logo_url: /astro-portfolio-forge/favicon/favicon.svg
 
 media_folder: public/uploads
 public_folder: /uploads

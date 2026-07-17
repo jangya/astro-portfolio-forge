@@ -57,7 +57,7 @@ export const siteConfig = {
 
 export const templateConfig = {
   name: "Astro Portfolio Forge",
-  repoUrl: "https://github.com/your-github-username/astro-portfolio-forge",
+  repoUrl: "https://github.com/jangya/astro-portfolio-forge",
   badgeLabel: "Built with Astro Portfolio Forge",
 };
 
